@@ -17,7 +17,7 @@ func ConfigDb() error {
 
 	var err error
 	//set database configuration
-	config.App.DB.Config.Password = "3242414268"
+	config.App.DB.Config.Password = "1234"
 	config.App.DB.Config.User = "postgres"
 	config.App.DB.Config.Host = "localhost"
 	config.App.DB.Config.Port = "5432"
