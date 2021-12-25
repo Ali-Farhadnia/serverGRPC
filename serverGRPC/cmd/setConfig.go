@@ -1,11 +1,32 @@
 package cmd
 
 import (
-	"log"
-
 	"github.com/Ali-Farhadnia/serverGRPC/config"
 )
 
+var AppConfig *config.AppConfig
+
+func Config() []error {
+	var errs = make([]error, 0)
+	configger := config.NewAppCongigger()
+	configger.GrpcConfig().
+		Address("0.0.0.0:50051").
+		Network("tcp").
+		DataBaseConfig().
+		User("postgres").
+		Password("1234").
+		Host("localhost").
+		Port("5432").
+		Sslmode("disable").
+		DbName("book")
+	AppConfig, errs = configger.ConfigApp()
+	if len(errs) != 0 {
+		return errs
+	}
+	return nil
+}
+
+/*
 //set grpc configuration
 func Configgrpc() error {
 	config.App.GrpcConfig.Address = "0.0.0.0:50051"
@@ -37,3 +58,4 @@ func ConfigDb() error {
 	}
 	return nil
 }
+*/
