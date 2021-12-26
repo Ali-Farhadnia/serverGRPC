@@ -1,0 +1,49 @@
+version: '3'
+services:
+  grpc_server:
+    container_name: grpc_server
+    environment:
+      - grpc_network=${grpc_network}  
+      - grpc_address=${grpc_address}
+      - db_user=${db_user}
+      - db_password=${db_password}
+      - db_sslmode=${db_sslmode}
+      - db_dbname=${db_dbname}
+      - db_port=${db_port}
+      - db_host=${db_host}
+    build: .
+    ports: 
+      - 8080:8080 
+    restart: on-failure
+    volumes:
+      - api:/usr/src/app/
+    depends_on:
+      - postgresdb        
+    networks:
+      - fullstack
+
+
+  postgresdb:
+    image: postgres:latest
+    container_name: db_postgres
+    environment:
+      - POSTGRES_USER=${db_user}  
+      - POSTGRES_PASSWORD=${db_password}
+      - POSTGRES_DB=${db_name}
+      - DATABASE_HOST=${db_host} 
+    ports:
+      - '5432:5432'
+    volumes:
+      - database_postgres:/var/lib/postgresql/data
+    networks:
+      - fullstack
+
+
+volumes:
+  api:
+  database_postgres:                  
+
+# Networks to be created to facilitate communication between containers
+networks:
+  fullstack:
+    driver: bridge
