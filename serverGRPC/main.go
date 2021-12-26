@@ -14,20 +14,6 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	/*
-		//config database and connect to it
-		err := cmd.ConfigDb()
-		if err != nil {
-			panic(err)
-		}
-
-		err = cmd.Configgrpc()
-		if err != nil {
-			panic(err)
-		}
-		log.Println("server is runing...")
-		myserver.Start()
-	*/
 	log.Println("server is runing...")
 	bookserver.Start()
 }

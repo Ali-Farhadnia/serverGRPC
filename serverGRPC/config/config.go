@@ -1,22 +1,18 @@
 package config
 
-type grpc_config struct {
-	Address string `json:"address"`
-	Network string `json:"network"`
-}
-type database_config struct {
-	User     string `json:"user"`
-	Password string `json:"password"`
-	Sslmode  string `json:"sslmode"`
-	Host     string `json:"host"`
-	Port     string `json:"port"`
-	DbName   string `json:"dbname"`
-}
 type AppConfig struct {
-	GrpcConfig grpc_config     `json:"grpc_config"`
-	DbConfig   database_config `json:"database_config"`
+	//grpc
+	GrpcAddress string ` long:"grpc_address" description:"grpc address" default:"0.0.0.0:50051"`
+	GrpcNetwork string ` long:"grpc_network" description:"grpc network" default:"tcp"`
+	//database
+	DbUser     string `long:"db_user" description:"database user" default:"postgres"`
+	DbPassword string `long:"db_password" description:"database password" default:"1234"`
+	DbSslmode  string `long:"db_sslmode" description:"database ssl mode" default:"disable"`
+	DbHost     string `long:"db_host" description:"database host" default:"localhost"`
+	DbPort     string `long:"db_port" description:"database port" default:"5432"`
+	DbDbName   string `long:"db_name" description:"database name" default:"book"`
 }
 
 func NewAppConfig() *AppConfig {
-	return &AppConfig{grpc_config{}, database_config{}}
+	return &AppConfig{}
 }
