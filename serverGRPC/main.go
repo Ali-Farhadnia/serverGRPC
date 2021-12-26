@@ -10,12 +10,9 @@ import (
 func main() {
 	//set log flag
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
-	errs := cmd.Config()
-	if errs != nil {
-		for _, v := range errs {
-			log.Println(v)
-		}
-		panic("configuration failed")
+	err := cmd.Config()
+	if err != nil {
+		panic(err)
 	}
 	/*
 		//config database and connect to it

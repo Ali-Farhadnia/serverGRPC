@@ -1,0 +1,14 @@
+{
+    "grpc_config": {
+        "address": "0.0.0.0:50051",
+        "network": "tcp"
+    },
+    "database_config": {
+        "user": "postgres",
+        "password": "1234",
+        "sslmode": "disable",
+        "host": "localhost",
+        "port": "5432",
+        "dbName": "book"
+    }
+}
