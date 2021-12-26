@@ -28,7 +28,7 @@ ARG db_host
 ENV grpc_address =$grpc_address grpc_network=$grpc_network db_user=$db_user db_password=$db_password db_dbname=$db_dbname db_sslmode=$db_sslmode db_port=$db_port db_host=$db_host
 
 # Build the Go app
-RUN go build -o /grpc_server 
+RUN go build -a -installsuffix cgo -o main .
 
 # Start a new stage from scratch
 FROM alpine:latest
