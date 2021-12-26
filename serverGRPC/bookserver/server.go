@@ -129,9 +129,9 @@ func (s *server) DeleteBook(ctx context.Context, input *modelpb.BookID) (*modelp
 }
 
 func Start() {
-	grpcconfig := cmd.AppConfig
+	grpcconfig := cmd.AppConfig.GrpcConfig
 	log.Println("Start lestening...")
-	lis, err := net.Listen(grpcconfig.GrpcNetwork, grpcconfig.GrpcAddress)
+	lis, err := net.Listen(grpcconfig.Network, grpcconfig.Address)
 	if err != nil {
 		log.Fatalf("lestening was failed. error : %v", err)
 	}

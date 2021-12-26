@@ -4,15 +4,21 @@ import (
 	"fmt"
 
 	"github.com/Ali-Farhadnia/serverGRPC/config"
-	flags "github.com/jessevdk/go-flags"
 )
 
 var AppConfig *config.AppConfig
 
 func Config() error {
 	AppConfig = config.NewAppConfig()
-	parser := flags.NewParser(AppConfig, flags.Default)
-	_, err := parser.Parse()
+
+	/*
+		parser := flags.NewParser(AppConfig, flags.Default)
+		_, err := parser.Parse()
+		if err != nil {
+			return err
+		}
+	*/
+	err := AppConfig.SetEnvVar()
 	if err != nil {
 		return err
 	}

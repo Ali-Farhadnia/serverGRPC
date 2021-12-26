@@ -32,10 +32,10 @@ var DbOnce sync.Once
 //GetBookDb - set postgree connection to Book database to  work with
 func GetBookDb() (*sql.DB, error) {
 	DbOnce.Do(func() {
-		dbconfig := cmd.AppConfig
+		dbconfig := cmd.AppConfig.DbConfig
 		connStr := fmt.Sprintf("host=%s port=%s user=%s "+
 			"password=%s dbname=%s sslmode=%s",
-			dbconfig.DbHost, dbconfig.DbPort, dbconfig.DbUser, dbconfig.DbPassword, dbconfig.DbDbName, dbconfig.DbSslmode)
+			dbconfig.Host, dbconfig.Port, dbconfig.User, dbconfig.Password, dbconfig.DbName, dbconfig.Sslmode)
 		res, err := GetDBClientAccessPoint(connStr)
 		if err != nil {
 			clientInstanceError = err
