@@ -29,7 +29,7 @@ services:
     environment:
       - POSTGRES_USER=${db_user}  
       - POSTGRES_PASSWORD=${db_password}
-      - POSTGRES_DB=${db_name}
+      - POSTGRES_DB=${db_dbname}
       - DATABASE_HOST=${db_host} 
     ports:
       - '5432:5432'
