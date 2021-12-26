@@ -72,9 +72,9 @@ func (a *AppConfig) SetEnvVar() error {
 	}
 	a.DbConfig.Port = env_var
 	//set db_name
-	env_var = os.Getenv("db_name")
+	env_var = os.Getenv("db_dbname")
 	if env_var == "" {
-		return errors.New("empty env var input :db_name")
+		return errors.New("empty env var input :db_dbname")
 	}
 	a.DbConfig.DbName = env_var
 
