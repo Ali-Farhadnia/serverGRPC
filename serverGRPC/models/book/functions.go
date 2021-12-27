@@ -99,7 +99,7 @@ func (b Book) InsertToDb() (string, error) {
 	} else if id == "" {
 		return "", errors.New("somthing went wrong")
 	}
-
+	fmt.Println("------6------- ")
 	return id, nil
 
 }
