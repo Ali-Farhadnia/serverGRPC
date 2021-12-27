@@ -40,6 +40,10 @@ func GetBookDb() (*sql.DB, error) {
 		if err != nil {
 			clientInstanceError = err
 		}
+		err = res.Ping()
+		if err != nil {
+			clientInstanceError = err
+		}
 		clientInstance = res
 	})
 
