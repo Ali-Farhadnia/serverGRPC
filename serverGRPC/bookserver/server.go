@@ -34,6 +34,7 @@ func (s *server) InsertBook(ctx context.Context, input *modelpb.Books) (*modelpb
 			output.Status = "no"
 			d, _ := book.String()
 			output.Description = d
+			log.Println(logg)
 			return output, err
 		}
 		idd += "\n" + id
