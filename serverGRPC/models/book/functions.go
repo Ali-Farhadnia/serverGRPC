@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"log"
 
 	"github.com/Ali-Farhadnia/serverGRPC/connections"
 	uuid "github.com/satori/go.uuid"
@@ -40,10 +41,13 @@ func CreateBooksTable() error {
 	if err != nil {
 		switch err.Error() {
 		case e:
+			log.Println("books table created")
 			return nil
 		case "":
+			log.Println("failed to create book tablr")
 			return err
 		default:
+			log.Println("books table created")
 			return nil
 		}
 	}
