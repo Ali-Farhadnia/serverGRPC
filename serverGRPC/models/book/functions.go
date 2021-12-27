@@ -58,15 +58,14 @@ func CreateBooksTable() error {
 /*Insert function takes a list of books and adds them to the books table.
 If a book already exists, it only increases the book inventory.
 book id is a uniqe id that each time a book insert to books table sets*/
-func (b Book) InsertToDb() error {
+func (b Book) InsertToDb() (string, error) {
 	db, err := connections.GetBookDb()
 	if err != nil {
-		return err
+		return "", err
 	}
 
 	var id string
 	id, err = b.FindBookID()
-
 	if err == sql.ErrNoRows {
 		id := uuid.NewV4().String()
 
@@ -76,25 +75,27 @@ func (b Book) InsertToDb() error {
 			RETURNING id`
 		err := db.QueryRow(sqlStatement, id, b.Name, b.Author, b.Pagecount, b.Inventory).Scan(&id)
 		if err != nil {
-			return err
+			return "", err
 		}
 	} else if err != nil {
-		return err
+		return "", err
 	}
 	if id != "" {
 
 		book2, err := FindBookById(id)
 		if err != nil {
-			return err
+			return "", err
 		}
 		b.Inventory += book2.Inventory
 		err = b.UpdateBook(book2)
 		if err != nil {
-			return err
+			return "", err
 		}
+	} else {
+		return "", errors.New("somthing went wrong")
 	}
 
-	return nil
+	return id, nil
 
 }
 

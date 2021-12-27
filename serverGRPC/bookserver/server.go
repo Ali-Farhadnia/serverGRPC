@@ -19,6 +19,7 @@ type server struct {
 
 func (s *server) InsertBook(ctx context.Context, input *modelpb.Books) (*modelpb.Status, error) {
 	var logg = "InsertBook:"
+	var idd string
 	output := &modelpb.Status{}
 	//var books []book.Book
 	for _, inputbook := range input.Books {
@@ -27,7 +28,7 @@ func (s *server) InsertBook(ctx context.Context, input *modelpb.Books) (*modelpb
 		book.Author = inputbook.Author
 		book.Pagecount = inputbook.Pagescount
 		book.Inventory = inputbook.Inventory
-		err := book.InsertToDb()
+		id, err := book.InsertToDb()
 		if err != nil {
 			logg += "failed"
 			output.Status = "no"
@@ -35,11 +36,12 @@ func (s *server) InsertBook(ctx context.Context, input *modelpb.Books) (*modelpb
 			output.Description = d
 			return output, err
 		}
+		idd += "\n" + id
 		//books = append(books, book)
 	}
 	logg += "success"
 	output.Status = "ok"
-	output.Description = ""
+	output.Description = idd
 	log.Println(logg)
 	return output, nil
 }
