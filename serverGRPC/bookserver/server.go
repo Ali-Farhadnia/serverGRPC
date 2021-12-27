@@ -21,7 +21,6 @@ func (s *server) InsertBook(ctx context.Context, input *modelpb.Books) (*modelpb
 	var logg = "InsertBook:"
 	var idd string
 	output := &modelpb.Status{}
-	//var books []book.Book
 	for _, inputbook := range input.Books {
 		var book book.Book
 		book.Name = inputbook.Name
@@ -38,7 +37,6 @@ func (s *server) InsertBook(ctx context.Context, input *modelpb.Books) (*modelpb
 			return output, err
 		}
 		idd += "\n" + id
-		//books = append(books, book)
 	}
 	logg += "success"
 	output.Status = "ok"

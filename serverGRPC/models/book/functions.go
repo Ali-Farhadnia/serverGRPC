@@ -59,20 +59,20 @@ func CreateBooksTable() error {
 If a book already exists, it only increases the book inventory.
 book id is a uniqe id that each time a book insert to books table sets*/
 func (b Book) InsertToDb() (string, error) {
-	fmt.Println("in InsertToDb ")
-	fmt.Println(b)
-	defer fmt.Println("in InsertToDb ")
+	//fmt.Println("in InsertToDb ")
+	//fmt.Println(b)
+	//defer fmt.Println("in InsertToDb ")
 	db, err := connections.GetBookDb()
 	if err != nil {
 		return "", err
 	}
-	fmt.Println("------1------- ")
+	//fmt.Println("------1------- ")
 
 	var id string
 	id, err = b.FindBookID()
 	if err == sql.ErrNoRows {
 		id = uuid.NewV4().String()
-		fmt.Println("------2------- ")
+		//fmt.Println("------2------- ")
 		sqlStatement := `
 			INSERT INTO books (id, name, author, pagecount,inventory)
 			VALUES ($1, $2, $3, $4,$5)
@@ -82,15 +82,15 @@ func (b Book) InsertToDb() (string, error) {
 			return "", err
 		}
 	} else if err != nil {
-		fmt.Println("------3------- ")
+		//fmt.Println("------3------- ")
 		return "", err
 	} else if id != "" {
-		fmt.Println("------4------- ")
+		//fmt.Println("------4------- ")
 		book2, err := FindBookById(id)
 		if err != nil {
 			return "", err
 		}
-		fmt.Println("------5------- ")
+		//fmt.Println("------5------- ")
 		b.Inventory += book2.Inventory
 		err = book2.UpdateBook(&b)
 		if err != nil {
@@ -99,8 +99,8 @@ func (b Book) InsertToDb() (string, error) {
 	} else if id == "" {
 		return "", errors.New("somthing went wrong")
 	}
-	fmt.Println("------6------- ")
-	fmt.Println(id)
+	//fmt.Println("------6------- ")
+	//fmt.Println(id)
 	return id, nil
 
 }
