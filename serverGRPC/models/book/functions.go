@@ -71,7 +71,7 @@ func (b Book) InsertToDb() (string, error) {
 	var id string
 	id, err = b.FindBookID()
 	if err == sql.ErrNoRows {
-		id := uuid.NewV4().String()
+		id = uuid.NewV4().String()
 		fmt.Println("------2------- ")
 		sqlStatement := `
 			INSERT INTO books (id, name, author, pagecount,inventory)
@@ -100,6 +100,7 @@ func (b Book) InsertToDb() (string, error) {
 		return "", errors.New("somthing went wrong")
 	}
 	fmt.Println("------6------- ")
+	fmt.Println(id)
 	return id, nil
 
 }
