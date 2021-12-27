@@ -22,6 +22,7 @@ func Config() error {
 	if err != nil {
 		return err
 	}
+
 	fmt.Println(*AppConfig)
 	return nil
 }
