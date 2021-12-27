@@ -60,6 +60,7 @@ If a book already exists, it only increases the book inventory.
 book id is a uniqe id that each time a book insert to books table sets*/
 func (b Book) InsertToDb() (string, error) {
 	fmt.Println("in InsertToDb ")
+	fmt.Println(b)
 	defer fmt.Println("in InsertToDb ")
 	db, err := connections.GetBookDb()
 	if err != nil {
