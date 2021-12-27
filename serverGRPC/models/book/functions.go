@@ -83,8 +83,7 @@ func (b Book) InsertToDb() (string, error) {
 	} else if err != nil {
 		fmt.Println("------3------- ")
 		return "", err
-	}
-	if id != "" {
+	}else if id != "" {
 		fmt.Println("------4------- ")
 		book2, err := FindBookById(id)
 		if err != nil {
@@ -96,7 +95,7 @@ func (b Book) InsertToDb() (string, error) {
 		if err != nil {
 			return "", err
 		}
-	} else {
+	} else if {
 		return "", errors.New("somthing went wrong")
 	}
 
