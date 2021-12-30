@@ -1,0 +1,37 @@
+syntax ="proto3";
+package model;
+option go_package="./model/modelpb";
+
+
+message Status{
+    string status=1;
+    string Description=2;
+}
+message BookID {
+    string id=1;
+}
+
+message Book {
+    string id=1;
+    string name=2;
+    string author=3;
+    int32 pagescount=4;
+    int64 Inventory=5;
+}
+message Books{
+    repeated Book books=1;
+}
+message FindResponse {
+    Book book = 1;
+    Status status=2;
+}
+message UpdateRequest {
+    Book book=1;
+    string id=2;
+}
+service CRUD{
+    rpc InsertBook (Books) returns (Status);
+    rpc FindBookById(BookID) returns (FindResponse);
+    rpc UpdateBook (UpdateRequest) returns (Status);
+    rpc DeleteBook (BookID) returns (Status);
+}
