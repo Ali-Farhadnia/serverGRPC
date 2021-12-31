@@ -1,4 +1,4 @@
-# Grpc server sample
+# GRPC server sample
 
 A simple server that models a book repository where book information can be stored.
 
