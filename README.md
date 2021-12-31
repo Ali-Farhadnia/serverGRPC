@@ -2,7 +2,7 @@
 
 A simple server that models a book repository where book information can be stored.
 
-##book
+## book
 
 ```go
 package book
@@ -15,7 +15,7 @@ type Book struct {
 	Inventory int64  `json="inventory"`
 }
 ```
-##env vars
+## env vars
 grpc_address (need to specified)
 
 grpc_network (default="tcp")
@@ -32,7 +32,7 @@ db_port (database port)(default="5432")
 
 db_dbname (database name )(default="book")
 
-##some points
+## some points
 
 This program uses the postgresql database and expects to already have a database with the name specified in the env vars(db_dbname) section.
 
